@@ -11,14 +11,14 @@
 <table class="table table-stripped table text-center">
     <thead>
     <tr>
-        <td>N</td>
+        <th>N</th>
         <th>numero</th>
         <th>telephone client</th>
         <th>Nom produit</th>
         <th>Prix unitaire</th>
         <th>quantite commander</th>
         <th>montant commande</th>
-        <
+        <th>Etat Commande</th>
         <th colspan="3">Action</th>
     </tr>
     </thead>
@@ -27,11 +27,14 @@
 @foreach($commandes as $commande)
 <tr>
     <td>{{ $i++ }}</td>
-    <td>{{ $commande->nomero }}</td>
+    <td>{{ $commande->numeroCommande }}</td>
     <td>{{ $commande->telephoneClient }}</td>
     @foreach($commande->produits as $produit)
     <td>{{ $produit->titre }}</td>
     <td>{{ $produit->prix}}</td>
+    <td>{{ $produit->pivot->quantiteCommande }}</td>
+    <td>{{ $produit->pivot->montant }}</td>
+    <td><span class="badge badge-{{ getEtat($commande->etat) }}">{{ $commande->etat == 0?'en attente':'valider' }}</td>
     @endforeach
 <td><a href="{{ route('commande.show',['commande'=>$commande]) }}" class="btn btn-info btn-xs"><i class="fa fa-eye">Voir</i></a></td>
 <td><a href="{{ route('commande.edit',['commande'=>$commande]) }}" class="btn btn-success"><i class="fa fa-edit ">Modifier</i></a></td>
@@ -48,7 +51,7 @@
 {{ $commandes->appends(request()->input())->links() }}
 @else
 <div class="col-lg-12 alert">
-<h1>{{ __('Cette classe ne contient pas d\'Eleve ') }}</h1>
+<h1>{{ __("il n'y a pas de commandes") }}</h1>
 </div>
 @endif
 </div>

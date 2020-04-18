@@ -67,11 +67,25 @@ class ControllerCommande extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Commande $commande)
     {
-        //
+        return view('commandes.voir',compact('commande'));
     }
-
+public function valider(){
+    if(request()->commande){
+        $com = Commande::where('numeroCommande',request()->commande)->first();
+        $com->update([
+            'etat'=>1
+        ]);
+        foreach($com->produits as $produit){
+            Produit::where('slug',$produit->slug)->update([
+                'quantite'=>($produit->quantite-$produit->pivot->quantiteCommande),
+            ]);
+        }
+        flash('commande valider avec succé');
+        return redirect()->route('commande.index');
+    }
+}
     /**
      * Show the form for editing the specified resource.
      *

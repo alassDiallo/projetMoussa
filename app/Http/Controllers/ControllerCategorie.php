@@ -43,7 +43,7 @@ class ControllerCategorie extends Controller
             'nom'=>$request->nom,
             'slug'=>$request->nom.rand(0,100)
         ]);
-
+            flash('categorie ajouter avec succé');
         return redirect()->route('categorie.index');
     }
 
@@ -53,9 +53,9 @@ class ControllerCategorie extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Categorie $categorie)
     {
-        //
+        return view('categories.categorie',compact('categorie'));
     }
 
     /**
@@ -64,9 +64,9 @@ class ControllerCategorie extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Categorie $categorie)
     {
-        //
+        return view('categories.modif',compact('categorie'));
     }
 
     /**
@@ -78,7 +78,14 @@ class ControllerCategorie extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'nom'=>'required|string|min:2|max:30|unique:categories',
+        ]);
+        Categorie::where('slug',$id)->update([
+            'nom'=>$request->nom,
+            ]);
+            flash('categorie modifier avec succé');
+            return redirect()->route('categorie.index');
     }
 
     /**
@@ -89,6 +96,8 @@ class ControllerCategorie extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categorie::where('slug',$id)->delete();
+        flash('categorie supprimer avec succé');
+        return redirect()->route('categorie.index');
     }
 }

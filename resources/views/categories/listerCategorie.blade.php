@@ -5,9 +5,9 @@
     <div class="">
 <a  href="{{ route('categorie.create') }}"class="btn btn-success mb-4"><i class="fa fa-plus"></i>Ajouter une categorie</a>
 </div>
-<div class="card">
-    <div class="card-header">
-        <h4>Liste de categories
+<div class="card border-info">
+    <div class="card-header bg-info" style="color:white;">
+        <h4>Liste de categories</h4>
     </div>
     <div class="card-body">
 @if(! $categories->isEmpty())

@@ -1,4 +1,4 @@
-<div class="col-xs-3 mr-2 bg-primary"  id="menu">
+<div class="col-xs-3 mr-2 bg-info"  id="menu">
     <div class="sidebar-toggle-box text-right">
         <div class="fa fa-navicon tooltips mr-4" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
@@ -9,7 +9,7 @@
 	<tr>
     <th><div class="dropdown dropright">
         <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-users mr-2"></i>Categorie
+          <i class="fa fa-suitcase mr-2"></i>Categorie
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <a class="dropdown-item" href="{{ route('categorie.create') }}" type="button">Ajouter une Categorie</a>
@@ -21,7 +21,7 @@
 	<tr>
     <th><div class="dropdown dropdown">
         <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user mr-2"></i>Produits
+          <i class="fa fa-cart-plus mr-2"></i>Produits
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <a class="dropdown-item" href="{{ route('produits.create') }}" type="button">Ajouter un produit</a>
@@ -33,7 +33,7 @@
     <tr>
 		<th><div class="dropdown dropright">
             <a class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user mr-2"></i>Commandes
+              <i class="fa fa-exchange mr-2"></i>Commandes
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <a class="dropdown-item" href="{{ route('commande.index') }}" type="button">Lister les commandes</a>
@@ -42,7 +42,7 @@
             </div></th>
 	</tr>
 <tr>
-    <th><a style="color:white;" >Stockage</a></th>
+    <th><a style="color:white;" href="{{ route('stockage') }}" >Stockage</a></th>
 </tr>
 	<tr>
 		<th><a href=""><i class="fa fa-lock mr-2"></i>Compte</a></th>

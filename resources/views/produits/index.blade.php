@@ -4,7 +4,7 @@
     <div class="col-md-6">
         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col-auto d-none d-lg-block">
-          <img src="{{ asset('/img/img2.jpg') }}">
+          <img src="/img/{{ $produit->image}}" width="250px" height="250px"  class="img-thumbnail"/>
           </div>
           <div class="col p-4 d-flex flex-column position-static">
             <strong class="d-inline-block mb-2 text-primary">
@@ -15,7 +15,7 @@
             <div class="mb-1 text-muted">{{ $produit->created_at->format('d/m/Y') }}</div>
             <p class="card-text mb-auto">{{ $produit->sousTitre }}.</p>
           <strong>{{ getPrice($produit->prix) }}</strong>
-          <a href="{{ route('produits.show',$produit->slug) }}" class="stretched-link btn btn-info"><i class="fa fa-eye mr-2"></i>consulter l'article</a>
+          <a href="{{ route('afficher',$produit->slug) }}" class="stretched-link btn btn-info"><i class="fa fa-eye mr-2"></i>consulter l'article</a>
           </div>
 
         </div>

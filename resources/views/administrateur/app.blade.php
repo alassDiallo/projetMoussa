@@ -86,6 +86,11 @@ table a{
         @include('administrateur.men');
     </div>
     <div class="col-lg-9">
+        @if(session()->has('notification.message'))
+        <div class="alert alert-{{ session('notification.type') }} col-lg-12 text-center">
+                {!! session()->get('notification.message') !!}
+             </div>
+             @endif
     @yield('content')
     </div>
 </div>

@@ -1,11 +1,11 @@
 @extends('administrateur.app')
 @section('content')
-<div class="card card-info form">
-    <div class="card-header">
-        Ajouter un eleve
+<div class="card  bb-info border-info ">
+    <div class="card-header bg-info" style="color:white;">
+       <h4> Ajouter un Article</h4>
     </div>
     <div class="card-body">
-    <form method="POST" action="{{ route('categorie.store') }}" id="form"  class="">
+    <form method="POST" action="{{ route('produits.store') }}" id="form"  enctype="multipart/form-data" class="">
         @csrf
 <div class="row">
 <div class="form-group col-lg-6">
@@ -41,7 +41,7 @@
         <select class="form-control custom-select @error('categorie') is-invalid @enderror" id="categorie" name="categorie" onchange="montant();">
             <option value="">--selectionner--</option>
             @foreach($categorie as $categorie)
-        <option {{ old('categorie')==$categorie->nom? "selected":"" }} value="{{ $categorie->slug }}"> {{ $categorie->nom  }}</option>
+        <option {{ old('categorie')==$categorie->slug? "selected":"" }} value="{{ $categorie->slug }}"> {{ $categorie->nom  }}</option>
             @endforeach
         </select>
     </div>
@@ -99,7 +99,7 @@
             <label for="image">Image*</label>
         <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-book"></i></span>
-        <input type="file" name="image" class="@error('image') is-invalid @enderror" value="{{ old('image') }}"/>
+        <input type="file" name="image" class="file-control @error('image') is-invalid @enderror" value="{{ old('image') }}"/>
         </div>
         @error('image')
         <span class="helper" role="alert">
@@ -112,7 +112,7 @@
     <div>
         <div class="form-group">
         <label for="description">Description*</label>
-        <textarea cols="6" rows="4" name="description" class="form-control"></textarea>
+        <textarea cols="6" rows="4" name="description" class="form-control @error('description') is-invalid @enderror" @error('description') autofocus @enderror>{{ old('description') }}</textarea>
         @error('description')
         <span class="helper helper-danger">{{ $message }}</span>
         @enderror

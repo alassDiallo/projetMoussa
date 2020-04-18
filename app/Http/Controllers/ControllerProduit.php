@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use App\Models\Produit;
 use App\Models\Categorie;
@@ -60,9 +60,42 @@ class ControllerProduit extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+                'titre'=>'required|string|min:3:unique:produits',
+                'sousTitre'=>'required|string|min:3',
+                'quantite'=>'required|integer|min:0',
+                'qualite'=>'required|string|min:3',
+                'categorie'=>'required',
+                'prix'=>'required|integer|min:0',
+                'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'description'=>'required|string',
+        ]);
+        $categorie = Categorie::where('slug',$request->categorie)->first();
+        if($file = $request->file('image')){
+            $ImageUpload = Image::make($file);
+            $originalPath = public_path('/img/');
+            $ImageUpload->save($originalPath.time().$file->getClientOriginalName());
+            $filename = time().$file->getClientOriginalName();
+        Produit::create([
+            'titre'=>$request->titre,
+            'sousTitre'=>$request->sousTitre,
+            'quantite'=>$request->quantite,
+            'qualite'=>$request->qualite,
+            'prix'=>$request->prix,
+            'description'=>$request->description,
+            'image'=>$filename,
+            'categorie_id'=>$categorie->id,
+            'slug'=>$request->titre.rand(0,10000000000)
+        ]);}
+            flash('produit enregistrer avec succé');
+            return redirect()->route('listeProduit');
     }
 
+    public function stockage(){
+        $produit = Produit::all();
+        $categorie = Categorie::all();
+        return view('produits.stockage',compact('produit','categorie'));
+    }
     /**
      * Display the specified resource.
      *
@@ -70,6 +103,11 @@ class ControllerProduit extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Produit $produit)
+    {
+        return view('produits.voir',compact('produit'));
+    }
+
+    public function afficherproduit(Produit $produit)
     {
         $prod = Produit::where('categorie_id',$produit->categorie->id)->orderBy('titre')->paginate(4);
         return view('produits.show',compact('produit','prod'));

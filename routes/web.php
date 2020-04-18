@@ -20,10 +20,13 @@ Route::get('/', function () {
 Route::get('/a', function () {
     return view('administrateur.app');
 });
+Route::get('stockage','ControllerProduit@stockage')->name('stockage');
+Route::get('commande.valider','controllerCommande@valider')->name('commande.valider');
+Route::get('afficherProduit/{produit}','ControllerProduit@afficherproduit')->name('afficher');
 Route::resource('categorie', 'ControllerCategorie');
 Route::get('/recherche','ControllerProduit@recherche')->name('produits.recherche');
 Route::resource('produits','ControllerProduit');
-Route::get('/payement','ControllerPayement@index')->name('payement.index');
+//Route::get('/payement','ControllerPayement@index')->name('payement.index');
 Route::get('commander','controllerCommande@commander')->name('commander');
 Route::post('commander',function(){
 dd('commander');

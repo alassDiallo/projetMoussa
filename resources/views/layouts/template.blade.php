@@ -32,22 +32,61 @@
     <div class="container">
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 text-center">
-      <a class="blog-header-logo text-dark" href="{{ route('produits.index') }}"><h5>SUNU SUPER<h5></a>
+      <div class="text-center col-lg-12 bg-info">
+      <a class="blog-header-logo text-dark" href="{{ route('produits.index') }}"><h1>SAMA TENUE<h1></a>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        @include('layouts.partials._partial')
-      </div>
+
     </div>
   </header>
 
-  <div class="nav-scroller py-1 mb-2 bg-dark text-center" >
+  <!--<div class="nav-scroller py-1 mb-2 bg-dark text-center" >
     <nav class="nav d-flex justify-content-between">
         @foreach (App\Models\Categorie::all() as $categorie)
     <a class="p-2 " style="color:white;"  href="{{ route('produits.index',['categorie'=>$categorie->slug]) }}"> {{ $categorie->nom   }}</a>
         @endforeach
     </nav>
-  </div>
+  </div>-->
+<div class="mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">A propos</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Categoties
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach (App\Models\Categorie::all() as $categorie)
+    <a class="dropdown-item" style=""  href="{{ route('produits.index',['categorie'=>$categorie->slug]) }}"> {{ $categorie->nom   }}</a>
+        @endforeach
+          </div>
+        </li>
+      </ul>
+      <form action="{{ route('produits.recherche') }}" class="form-inline my-2 my-lg-0">
+        <div class="form-group mb-0 mr-1">
+        <input type="search" class="form-control mr-sm-2 @error('recherche') has-invalid @enderror" name="recherche" placeholder="recherche" value="{{  request()->recherche ?? ''  }}" aria-label="Search"/>
+            @error('recheche')
+        <span style="color:red">{{ $message }}</span>
+            @enderror
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">rechercher</button>
+      <!--<form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      </form>
+    </div>
+  </nav>
+</div>
+
   @if(session('message'))
   <div class="alert alert-success">
       {{ session('message') }}
@@ -66,21 +105,21 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{ asset('/img/img2.jpg') }}" class="d-block w-100" style="height: 300px" alt="...">
+      <img src="{{ asset('/img/img2.jpg') }}" class="d-block w-100 img-thumbnail" style="height: 300px" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="{{ asset('/img/img2.jpg') }}" class="d-block w-100" style="height: 300px"alt="...">
+      <img src="{{ asset('/img/img2.jpg') }}" class="d-block w-100 img-thumbnail" style="height: 300px"alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img style="height: 300px;" src="{{ asset('/img/img.jpg') }}" class="d-block w-100" alt="...">
+      <img style="height: 300px;" src="{{ asset('/img/img.jpg') }} img-thumbnail" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>

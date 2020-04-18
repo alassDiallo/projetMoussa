@@ -15,7 +15,7 @@
           </form>
           </div>
           <div class="col-auto d-none d-lg-block">
-          <img src="{{ asset('/img/img2.jpg') }}">
+            <img src="/img/{{ $produit->image}}" width="250px" height="250px"  class="img-thumbnail">
           <div class="mt-2">
             @if($produit->images)
               @foreach(json_decode($produit->images,true) as $images)
