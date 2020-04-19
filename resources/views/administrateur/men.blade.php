@@ -42,7 +42,7 @@
             </div></th>
 	</tr>
 <tr>
-    <th><a style="color:white;" href="{{ route('stockage') }}" >Stockage</a></th>
+    <th style="color:white;"> <i class="fa fa-database mr-2"></i><a  href="{{ route('stockage') }}" >Stockage</a></th>
 </tr>
 	<tr>
 		<th><a href=""><i class="fa fa-lock mr-2"></i>Compte</a></th>

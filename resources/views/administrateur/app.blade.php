@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap-theme.css') }}">
@@ -20,8 +21,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('/bootstrap/js/bootstrap.js') }}" defer></script>
     <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}" defer></script>
-    @yield('style')
-    @yield('formulaire')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
